@@ -1,0 +1,26 @@
+﻿@model GenreModel
+
+<form asp-method="post" asp-action="MovieSearch" style="display:flex;align-items:center;justify-content:center">
+    <input type="text" name="newMovie" placeholder="Title" style="margin-inline-end:10px" />
+    <div>
+        <label for="g" style="text-align:center">Display genre?</label>
+        <input type="checkbox" id="g" name="showGenre" value="false" style="margin-inline-end:10px" />
+    </div>
+    <input type="submit" style="margin:10px 0px 10px 0px" value="Find movie" />
+</form>
+
+@{
+    // for some reason "Movie != null" was always returning true during my tests
+    if (Model != null && Model.Movie.Title != null)
+    {
+        <h4 style="display:flex;align-items:center;justify-content:center">Now Showing: @Model.Movie.Title</h4>
+        <span style="display:flex;align-items:center;justify-content:center">
+                <img src="@Model.Movie.Poster" width="200px"/>
+        </span>
+        if(Model.ShowGenre)
+        {
+            <h5 style="display:flex;align-items:center;justify-content:center">Genre: @Model.Movie.Genre</h5>
+        }
+
+    }
+}

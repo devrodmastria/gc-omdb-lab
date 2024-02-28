@@ -1,0 +1,28 @@
+﻿@model List<MovieModel>
+
+<form asp-action="MovieNight">
+    <input type="text" name="m1" placeholder="First movie" style="margin-bottom:10px"/>
+    <br />
+    <input type="text" name="m2" placeholder="Anoter movie" style="margin-bottom:10px"/>
+    <br />
+    <input type="text" name="m3" placeholder="One more movie" style="margin-bottom:10px"/>
+    <br />
+    <input type="submit" style="margin:10px 0px 10px 0px" value="Find my movies!" />
+</form>
+
+@{
+
+    // for some reason "Movie != null" was always returning true during my tests
+    if (Model[0].Title != null)
+    {
+        <h6>Now Showing...</h6>
+        <hr />
+
+        foreach(MovieModel item in Model)
+        {
+            <h6>@item.Title</h6>
+            <img src="@item.Poster" width="200px" />
+        }
+
+    }
+}
